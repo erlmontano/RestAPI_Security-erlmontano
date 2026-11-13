@@ -16,11 +16,17 @@ import com.spring.spring_rest.entity.Auth_Role;
 import com.spring.spring_rest.entity.Auth_User;
 import com.spring.spring_rest.repository.AuthUserRepository;
 
+/**
+ * Custom implementation that loads user authentication
+ * and authorization details from the database.
+ */
 @Service 
 public class CustomUserDetailService implements UserDetailsService{
     private final AuthUserRepository authUserRepo;
     
-
+    /**
+     * Constructs a CustomUserDetailService with the specified user repository.
+     */
     public CustomUserDetailService(AuthUserRepository authUserRepo){
         this.authUserRepo = authUserRepo;
     }
@@ -28,15 +34,18 @@ public class CustomUserDetailService implements UserDetailsService{
     public UserDetails loadUserByUsername(String theUsername) {
         Auth_User user = authUserRepo.findByUsername(theUsername)
                 .orElseThrow(
-                    () -> new UsernameNotFoundException("Username" + theUsername
-                                                         + "does not exist")                   
+                    () -> new UsernameNotFoundException
+                                ("Username" + theUsername
+                                + "does not exist")                   
                     );       
         return new User(user.getUsername(),
                         user.getPassword(),
                         mapRolesToAuthorities(user.getRoles()));
     }
-    private Collection<GrantedAuthority> mapRolesToAuthorities(List<Auth_Role> roles) {
-        return roles.stream().map(role -> new SimpleGrantedAuthority(role.getName()))
+    private Collection<GrantedAuthority> 
+            mapRolesToAuthorities(List<Auth_Role> roles) {
+        return roles.stream().map(role -> new SimpleGrantedAuthority
+                                (role.getName()))
                 .collect(Collectors.toList());
     }
 

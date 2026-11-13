@@ -13,12 +13,20 @@ import org.springframework.security.web.SecurityFilterChain;
 
 import com.spring.spring_rest.service.CustomUserDetailService;
 
+/**
+ * Spring Security configuration defining password encoding, authentication management,
+ * and HTTP endpoint authorization rules.
+ */
 @EnableWebSecurity 
 @Configuration 
 public class SecurityConfig {
 
     private CustomUserDetailService userDetailsService;
     
+    /**
+     * Constructs a config with the 
+     * specified user details service.
+     */
     public SecurityConfig(CustomUserDetailService userDetailsService){
         this.setUserDetailsService(userDetailsService);
     }
@@ -40,8 +48,8 @@ public class SecurityConfig {
                 return security
                         .csrf(AbstractHttpConfigurer::disable)
                         .authorizeHttpRequests(auth -> auth
-                                                        .requestMatchers("/api/auth/**").permitAll()
-                                                        .anyRequest().authenticated())
+                        .requestMatchers("/api/auth/**").permitAll()
+                        .anyRequest().authenticated())
             .httpBasic(Customizer.withDefaults())
             .build();
             }
@@ -50,7 +58,8 @@ public class SecurityConfig {
         return userDetailsService;
     }
 
-    public void setUserDetailsService(CustomUserDetailService userDetailsService) {
+    public void setUserDetailsService
+            (CustomUserDetailService userDetailsService) {
         this.userDetailsService = userDetailsService;
     }
     

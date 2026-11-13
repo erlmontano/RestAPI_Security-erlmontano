@@ -1,5 +1,8 @@
 package com.spring.spring_rest.dto;
 
+/**
+ * AuthUserRegisterDto.
+ */
 public class AuthUserRegisterDto {
 
     private String username;

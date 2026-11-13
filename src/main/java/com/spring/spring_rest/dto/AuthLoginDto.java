@@ -4,6 +4,9 @@ public class AuthLoginDto {
     private String username;
     private String password;
 
+    /**
+     * Constructs an AuthLoginDto with the specified username and password.
+     */
     public AuthLoginDto(String username, String password) {
         this.username = username;
         this.password = password;

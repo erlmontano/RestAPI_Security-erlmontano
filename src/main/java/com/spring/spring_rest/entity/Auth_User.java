@@ -14,6 +14,9 @@ import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 
+/**
+ * Auth_User.
+ */
 @Entity
 @Table(name = "auth_user")
 public class Auth_User {
@@ -27,7 +30,8 @@ public class Auth_User {
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(
             name = "authusers_authroles",
-            joinColumns = @JoinColumn(name = "authuser_id", referencedColumnName = "id"),
+            joinColumns = @JoinColumn
+                    (name = "authuser_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "authrole_id", 
             referencedColumnName = "id")
     )

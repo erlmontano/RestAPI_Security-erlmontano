@@ -6,6 +6,9 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
+/**
+ * Auth_Role.
+ */
 @Entity
 @Table (name = "auth_role")
 public class Auth_Role {
