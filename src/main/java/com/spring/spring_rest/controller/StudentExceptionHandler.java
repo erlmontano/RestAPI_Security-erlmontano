@@ -34,6 +34,10 @@ public class StudentExceptionHandler {
             return new ResponseEntity<>(err, HttpStatus.NOT_FOUND);
         }
     
+    /**
+     * Handles general uncaught exceptions, such as type mismatch errors when
+     * non-integer path variables or parameters are provided.
+     */
     @ExceptionHandler 
     public ResponseEntity<StudentErrorResponse> handleException(Exception ex) {
             StudentErrorResponse err = new StudentErrorResponse();
@@ -45,6 +49,11 @@ public class StudentExceptionHandler {
             return new ResponseEntity<>(err, HttpStatus.BAD_REQUEST);
     }
 
+    /**
+     * Handles validation failures annotations on
+     * incoming request payloads. Extracts each invalid field and maps it to
+     * its corresponding validation error message.
+     */
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<Map<String, String>> handleValidationException(
         MethodArgumentNotValidException ex) {
