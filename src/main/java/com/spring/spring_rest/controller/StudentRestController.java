@@ -29,12 +29,15 @@ public class StudentRestController {
     }
 
     @PostMapping
-    public ResponseEntity<StudentDto> createStudents(@Valid @RequestBody StudentDto theStudentDto) {
+    public ResponseEntity<StudentDto> createStudents
+                        (@Valid @RequestBody StudentDto theStudentDto) {
         StudentDto saved = studentService.createStudent(theStudentDto);
         return new ResponseEntity<>(saved, HttpStatus.CREATED);
     }
 
-    // get student REST API
+    /**
+     * Get Student API
+     */
     @GetMapping("{id}")
     public ResponseEntity<StudentDto> getStudentById(@PathVariable Long id) {
         StudentDto studentDto = studentService.getStudentById(id);
@@ -49,12 +52,15 @@ public class StudentRestController {
 
     @PutMapping("{id}")
     public ResponseEntity<StudentDto> updateStudent(@PathVariable Long id,
-                                                  @Valid @RequestBody StudentDto theStudentDto) {
-        StudentDto studentDto = studentService.updateStudent(id, theStudentDto);
+                                @Valid @RequestBody StudentDto theStudentDto) {
+        StudentDto studentDto = studentService.updateStudent
+                                (id, theStudentDto);
         return ResponseEntity.ok(studentDto);
     }
 
-    //patch student REST API
+    /**
+     * Patch Student REST API
+     */
     @PatchMapping("{id}")
     public ResponseEntity<StudentDto> patchStudent(@PathVariable Long id,
             @Valid @RequestBody StudentDto thStudentDto) {
@@ -62,7 +68,9 @@ public class StudentRestController {
         return ResponseEntity.ok(studentDto);
     }
 
-    //delete student REST API
+    /**
+     * Delete student REST API
+     */
     @DeleteMapping ("{id}")
     public ResponseEntity<String> deleteStudentById(@PathVariable Long id){
         studentService.deleteStudentById(id);

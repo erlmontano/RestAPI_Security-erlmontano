@@ -8,7 +8,9 @@ import com.spring.spring_rest.entity.Student;
  */
 public class StudentMapper {
 
-    //method will map Student to StudentDto
+    /**
+     * method will map Student to Student
+     */
     public static StudentDto maptoStudentDto(Student theStudent){
         return new StudentDto(theStudent.getId(), 
                                 theStudent.getFirstName(),
@@ -16,7 +18,9 @@ public class StudentMapper {
                                 theStudent.getEmail());
     }
 
-    //method will map StudentDto to Student
+    /**
+     * method will map Student to StudentDto
+     */
     public static Student maptoStudent(StudentDto theStudentDto){
         return new Student(theStudentDto.getId(),
                             theStudentDto.getFirstName(),
